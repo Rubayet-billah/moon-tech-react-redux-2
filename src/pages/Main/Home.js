@@ -9,6 +9,8 @@ const Home = () => {
   const filters = useSelector((state) => state.filter.filters);
   console.log(filters);
 
+  const { brand, stock } = filters;
+
   const dispatch = useDispatch((state) => state);
 
   useEffect(() => {
@@ -24,19 +26,25 @@ const Home = () => {
       <div className="mb-10 flex justify-end gap-5">
         <button
           onClick={() => dispatch(filterStock())}
-          className={`border px-3 py-2 rounded-full font-semibold ${activeClass} `}
+          className={`border px-3 py-2 rounded-full font-semibold ${
+            stock && activeClass
+          } `}
         >
           In Stock
         </button>
         <button
           onClick={() => dispatch(filterBrand("amd"))}
-          className={`border px-3 py-2 rounded-full font-semibold`}
+          className={`border px-3 py-2 rounded-full font-semibold ${
+            brand.includes("amd") && activeClass
+          }`}
         >
           AMD
         </button>
         <button
           onClick={() => dispatch(filterBrand("intel"))}
-          className={`border px-3 py-2 rounded-full font-semibold`}
+          className={`border px-3 py-2 rounded-full font-semibold ${
+            brand.includes("intel") && activeClass
+          }`}
         >
           Intel
         </button>
