@@ -25,7 +25,7 @@ const ProductCard = ({ product }) => {
           {product.keyFeature.map((feature) => {
             return (
               <li key={feature} className="text-sm ">
-                {feature} <p></p>
+                {feature}
               </li>
             );
           })}
