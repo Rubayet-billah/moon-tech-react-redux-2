@@ -45,6 +45,7 @@ const productReducer = (state = initialState, action) => {
         ...state,
         cart: [...state.cart, { ...action.payload, quantity: 1 }],
       };
+
     case REMOVE_FROM_CART:
       if (selectedProduct.quantity > 1) {
         const newCart = state.cart.filter(
