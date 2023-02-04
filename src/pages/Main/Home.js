@@ -7,7 +7,6 @@ const Home = () => {
   const [products, setProducts] = useState([]);
 
   const filters = useSelector((state) => state.filter.filters);
-  console.log(filters);
 
   const { brand, stock } = filters;
 
