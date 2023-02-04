@@ -5,7 +5,7 @@ import { filterBrand, filterStock } from "../../redux/actions/filterActions";
 import loadProductData from "../../redux/thunk/product/fetchProducts";
 
 const Home = () => {
-  const filters = useSelector((state) => state.filter.filters);
+  const { filters, keyword } = useSelector((state) => state.filter);
   const products = useSelector((state) => state.product.products);
 
   const { brand, stock } = filters;
@@ -26,8 +26,16 @@ const Home = () => {
     ));
   }
 
-  if (products.length && (stock || brand.length)) {
+  if (products.length && (stock || brand.length || keyword)) {
     content = products
+      .map((product) => {
+        if (keyword) {
+          console.log(product.model.toLowerCase().includes(keyword));
+          return product.model.toLowerCase().includes(keyword);
+        } else {
+          return product;
+        }
+      })
       .filter((product) => {
         if (stock) {
           return product.status === true;

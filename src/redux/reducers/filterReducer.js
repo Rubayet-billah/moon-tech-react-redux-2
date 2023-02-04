@@ -1,4 +1,8 @@
-import { TOOGLE_BRAND, TOOGLE_STOCK } from "../actionTypes/actionTypes";
+import {
+  SEARCH_FILTER,
+  TOOGLE_BRAND,
+  TOOGLE_STOCK,
+} from "../actionTypes/actionTypes";
 
 const initialState = {
   filters: {
@@ -37,6 +41,11 @@ const filterReducer = (state = initialState, action) => {
           ...state.filters,
           stock: !state.filters.stock,
         },
+      };
+    case SEARCH_FILTER:
+      return {
+        ...state,
+        keyword: action.payload.toLowerCase(),
       };
 
     default:
