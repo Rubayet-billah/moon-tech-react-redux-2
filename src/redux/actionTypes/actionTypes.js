@@ -9,3 +9,4 @@ export const LOAD_PRODUCT = "LOAD_PRODUCT";
 
 export const TOOGLE_BRAND = "TOOGLE_BRAND";
 export const TOOGLE_STOCK = "TOOGLE_STOCK";
+export const SEARCH_FILTER = "SEARCH_FILTER";
