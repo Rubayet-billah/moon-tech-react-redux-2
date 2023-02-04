@@ -2,25 +2,29 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ProductCard from "../../components/ProductCard";
 import { filterBrand, filterStock } from "../../redux/actions/filterActions";
+import loadProductData from "../../redux/thunk/product/fetchProducts";
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
-
   const filters = useSelector((state) => state.filter.filters);
+  const products = useSelector((state) => state.product.products);
 
   const { brand, stock } = filters;
 
   const dispatch = useDispatch((state) => state);
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data.data));
-  }, []);
+    dispatch(loadProductData());
+  }, [dispatch]);
 
   const activeClass = "text-white bg-indigo-500 border-white";
 
   let content;
+
+  if (products.length) {
+    content = products.map((product) => (
+      <ProductCard key={product.model} product={product} />
+    ));
+  }
 
   if (products.length && (stock || brand.length)) {
     content = products
