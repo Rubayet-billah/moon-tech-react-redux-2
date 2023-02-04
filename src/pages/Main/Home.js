@@ -18,7 +18,7 @@ const Home = () => {
       .then((data) => setProducts(data.data));
   }, []);
 
-  const activeClass = "text-white  bg-indigo-500 border-white";
+  const activeClass = "text-white bg-indigo-500 border-white";
 
   let content;
 
