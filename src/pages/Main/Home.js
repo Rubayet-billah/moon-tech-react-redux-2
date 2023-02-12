@@ -28,17 +28,17 @@ const Home = () => {
 
   if (products.length && (stock || brand.length || keyword)) {
     content = products
-      .map((product) => {
-        if (keyword) {
-          console.log(product.model.toLowerCase().includes(keyword));
-          return product.model.toLowerCase().includes(keyword);
+      .filter((product) => {
+        if (stock) {
+          return product.status === true;
         } else {
           return product;
         }
       })
       .filter((product) => {
-        if (stock) {
-          return product.status === true;
+        if (keyword) {
+          console.log(product.model.toLowerCase());
+          return product.model.toLowerCase().includes(keyword);
         } else {
           return product;
         }
@@ -51,6 +51,8 @@ const Home = () => {
         }
       })
       .map((product) => <ProductCard key={product.model} product={product} />);
+
+    console.log(content);
   }
   return (
     <div className="max-w-7xl gap-14 mx-auto my-10">

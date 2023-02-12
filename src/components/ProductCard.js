@@ -9,7 +9,7 @@ const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const { pathname } = useLocation();
   return (
-    <div className="shadow-lg relative rounded-3xl border p-3 flex flex-col text-indigo-900">
+    <div className="shadow-lg relative rounded-3xl border p-5 flex flex-col text-indigo-900">
       {pathname.includes("cart") && (
         <div className="rounded-full grid place-items-center absolute top-2 right-2 bg-indigo-500 text-white h-8 w-8 font-bold ">
           <p> {product.quantity} </p>
@@ -22,7 +22,7 @@ const ProductCard = ({ product }) => {
       <p className="text-center font-semibold mb-3">Rating: {product.rating}</p>
       <div className=" flex-1">
         <ul className="space-y-2">
-          {product.keyFeature.map((feature) => {
+          {product?.keyFeature?.map((feature) => {
             return (
               <li key={feature} className="text-sm ">
                 {feature}
